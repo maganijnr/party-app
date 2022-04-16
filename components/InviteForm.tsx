@@ -10,7 +10,8 @@ interface IState {
 const InviteForm = ({people, setPeople}: IState) => {
    const [form, setForm] = useState<IForm>({
       name:"",
-      age: 0,
+      email:""
+,      age: 0,
       note:""
    })
 
@@ -28,6 +29,7 @@ const InviteForm = ({people, setPeople}: IState) => {
       } else {
          setPeople([...people, {
             name: form.name,
+            email: form.email,
             age: form.age,
             note: form.note
          }])
@@ -35,6 +37,7 @@ const InviteForm = ({people, setPeople}: IState) => {
 
       setForm({
          name:"",
+         email: "",
          age: 0,
          note:""
       })
@@ -54,6 +57,17 @@ const InviteForm = ({people, setPeople}: IState) => {
             />
          </div>
          <div className="flex flex-col w-60 mx-auto my-2">
+            <label htmlFor="Email">Email</label>
+            <input
+               name="email"
+               type="text"
+               className="border-2 border-gray-400 w-full px-2 py-1"
+               placeholder="Email"
+               value={form.email}
+               onChange={handleChange}
+            />
+         </div>
+         <div className="flex flex-col w-60 mx-auto my-2">
             <label htmlFor="age">Age</label>
             <input
                name="age"
@@ -64,16 +78,6 @@ const InviteForm = ({people, setPeople}: IState) => {
                onChange={handleChange}
             />
          </div>
-         {/* <div className="flex flex-col w-60 mx-auto my-2">
-            <label htmlFor="image">Image</label>
-            <input
-               name="image"
-               type="file"
-               className="border-2 border-gray-400 w-full px-2 py-1"
-               value={form.image}
-               onChange={handleChange}
-            />
-         </div> */}
          <div className="flex flex-col w-60 mx-auto my-2">
             <label htmlFor="image">Note</label>
             <textarea
